@@ -21,13 +21,14 @@ async def test_client():
     and prints the returned result.
     """
     async with client:
+        tools = await client.list_tools()
         content = await client.read_resource("topics://catalog")
         result = await client.call_tool(
             "get_topic_details",
             {"topic_id": "python-decorators"},
         )
-        print(content)
-        
+        print(tools)
+
 
 
 if __name__ == "__main__":
