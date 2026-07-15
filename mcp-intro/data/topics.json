@@ -1,106 +1,81 @@
 [
+  {
+    "id": "python-functions",
+    "title": "Python Functions",
+    "summary": "Defining and calling functions, passing arguments, returning values, and understanding why functions are the basic unit of reusable code.",
+    "prerequisites": [],
+    "key_concepts": [
+      "def statement",
+      "Parameters vs arguments",
+      "Return values",
+      "Default arguments",
+      "Functions as objects"
+    ],
+    "common_mistakes": [
+      "Confusing print with return",
+      "Using a mutable default argument",
+      "Forgetting that a function without return returns None"
+    ],
+    "practice_idea": "Write a function that takes a list of grades and returns the average, then a second function that reuses it to grade several students."
+  },
+  {
+    "id": "python-scope",
+    "title": "Python Scope and Namespaces",
+    "summary": "Where names live and how Python resolves them, following the LEGB rule: Local, Enclosing, Global, Built-in.",
+    "prerequisites": [
+      "python-functions"
+    ],
+    "key_concepts": [
+      "LEGB rule",
+      "Local vs global names",
+      "The global and nonlocal keywords",
+      "Name shadowing"
+    ],
+    "common_mistakes": [
+      "Assigning to a global variable inside a function without declaring it global",
+      "Shadowing a built-in name like list or sum",
+      "Expecting a loop variable to be scoped to the loop"
+    ],
+    "practice_idea": "Write a counter function that fails because of scope, observe the UnboundLocalError, then fix it with nonlocal."
+  },
+  {
+    "id": "python-closures",
+    "title": "Python Closures",
+    "summary": "Functions defined inside functions that capture variables from their enclosing scope, and keep them alive after the outer function returns.",
+    "prerequisites": [
+      "python-functions",
+      "python-scope"
+    ],
+    "key_concepts": [
+      "Nested functions",
+      "Captured (free) variables",
+      "Enclosing scope",
+      "Functions returned as values"
+    ],
+    "common_mistakes": [
+      "Believing the captured variable is copied instead of referenced",
+      "Trying to rebind a captured variable without nonlocal",
+      "Confusing a closure with a class instance"
+    ],
+    "practice_idea": "Write a make_multiplier(n) factory that returns a function multiplying its input by n, and check that two multipliers keep separate values of n."
+  },
     {
-        "id": "python-decorators",
-        "title": "Python Decorators",
-        "summary": "Python decorators wrap a function to add or modify its behavior without changing the original function.",
-        "prerequisites": [
-            "Functions",
-            "Scope"
-        ],
-        "key_concepts": [
-            "Higher-order functions",
-            "Wrapper functions"
-        ],
-        "common_mistakes": [
-            "Forgetting to return the wrapper function",
-            "Calling the decorated function instead of returning it"
-        ],
-        "practice_idea": "Create a decorator that logs function calls."
-    },
-    {
-        "id": "python-async",
-        "title": "Python Async Programming",
-        "summary": "Asynchronous programming allows Python programs to perform other work while waiting for operations to finish.",
-        "prerequisites": [
-            "Functions",
-            "Loops",
-            "Basic exception handling"
-        ],
-        "key_concepts": [
-            "Coroutines",
-            "Async and await",
-            "Event loop",
-            "Tasks"
-        ],
-        "common_mistakes": [
-            "Forgetting to use await with a coroutine",
-            "Using blocking functions inside asynchronous code"
-        ],
-        "practice_idea": "Create two asynchronous functions that run concurrently with asyncio.gather."
-    },
-    {
-        "id": "python-list-comprehensions",
-        "title": "Python List Comprehensions",
-        "summary": "List comprehensions provide a concise way to create lists from iterable objects.",
-        "prerequisites": [
-            "Lists",
-            "For loops",
-            "Conditions"
-        ],
-        "key_concepts": [
-            "Iteration",
-            "Expressions",
-            "Filtering",
-            "Conditional expressions"
-        ],
-        "common_mistakes": [
-            "Placing the condition in the wrong position",
-            "Creating comprehensions that are too difficult to read"
-        ],
-        "practice_idea": "Create a list containing the squares of all even numbers between 1 and 20."
-    },
-    {
-        "id": "python-oop",
-        "title": "Python Object-Oriented Programming",
-        "summary": "Object-oriented programming organizes code using classes and objects that contain data and behavior.",
-        "prerequisites": [
-            "Variables",
-            "Functions",
-            "Data structures"
-        ],
-        "key_concepts": [
-            "Classes",
-            "Objects",
-            "Attributes",
-            "Methods",
-            "Inheritance"
-        ],
-        "common_mistakes": [
-            "Forgetting the self parameter in instance methods",
-            "Confusing class attributes with instance attributes"
-        ],
-        "practice_idea": "Create a Student class with name and grade attributes and a method that displays the student's information."
-    },
-    {
-        "id": "rest-apis",
-        "title": "REST APIs",
-        "summary": "REST APIs allow applications to communicate over HTTP by exchanging structured data.",
-        "prerequisites": [
-            "HTTP basics",
-            "JSON",
-            "Python functions"
-        ],
-        "key_concepts": [
-            "Endpoints",
-            "HTTP methods",
-            "Status codes",
-            "Requests and responses"
-        ],
-        "common_mistakes": [
-            "Using the wrong HTTP method",
-            "Returning an incorrect status code",
-            "Not validating incoming data"
-        ],
-        "practice_idea": "Create a small API endpoint that returns a list of programming topics in JSON format."
-    }
+    "id": "shell-redirections",
+    "title": "Shell Redirections and Streams",
+    "summary": "Every process has three standard streams (stdin 0, stdout 1, stderr 2); redirections let you plug them into files or other processes.",
+    "prerequisites": [],
+    "key_concepts": [
+      "stdin, stdout, stderr",
+      "> and >> operators",
+      "2> for stderr",
+      "Pipes",
+      "Exit codes and $?"
+    ],
+    "common_mistakes": [
+      "Believing > redirects errors too",
+      "Using > instead of >> and overwriting a file",
+      "Checking $? after another command already replaced it"
+    ],
+    "practice_idea": "Run a command that produces both output and an error, then separate the two streams into two different files and verify each file's content."
+  }
 ]

@@ -8,63 +8,9 @@ string as command-line arguments.
 """
 
 import sys
-import os
-import json
 import asyncio
 
-from dotenv import load_dotenv
 from fastmcp import Client
-from litellm import acompletion
-
-
-load_dotenv()
-
-MODEL_NAME = os.getenv(
-    "MODEL_NAME",
-    "ollama_chat/gemma3:1b"
-)
-
-OLLAMA_API_BASE = os.getenv(
-    "OLLAMA_API_BASE",
-    "http://localhost:11434"
-)
-
-
-async def generate_course(question, details):
-    """Generate a Markdown course with the AI model."""
-
-    details_text = json.dumps(
-        details,
-        ensure_ascii=False,
-        indent=2
-    )
-
-    response = await acompletion(
-        model=MODEL_NAME,
-        api_base=OLLAMA_API_BASE,
-        messages=[
-            {
-                "role": "system",
-                "content": (
-                    "You are a programming teacher. "
-                    "Create a clear beginner-friendly course in Markdown. "
-                    "Use the information provided by the MCP server."
-                )
-            },
-            {
-                "role": "user",
-                "content": (
-                    f"Student question:\n{question}\n\n"
-                    f"MCP topic data:\n{details_text}\n\n"
-                    "Create a structured course with a title, "
-                    "prerequisites, explanation, key concepts, "
-                    "common mistakes, and a practice activity."
-                )
-            }
-        ]
-    )
-
-    return response.choices[0].message.content
 
 
 async def main():
@@ -100,8 +46,42 @@ async def main():
             {"topic_id": topic_id}
         )
         details = detail_result.data
-        response = await generate_course(question, details)
 
+        title = details.get("title")
+        summary = details.get("summary")
+        prerequisites = "\n".join(
+            f"- {item}" for item in details["prerequisites"]
+        )
+        key_concepts = "\n".join(
+            f"- {item}" for item in details["key_concepts"]
+        )
+        common_mistakes = "\n".join(
+            f"- {item}" for item in details["common_mistakes"]
+        )
+        practice_idea = details["practice_idea"]
+
+        response = f"""# Study Recommendation: {title}
+
+## Why This Topic Is Relevant
+
+{summary}
+
+## Prerequisites
+
+{prerequisites}
+
+## Key Concepts
+
+{key_concepts}
+
+## Practice Idea
+
+{practice_idea}
+
+## Common Mistakes to Avoid
+
+{common_mistakes}
+"""
     with open(
         "output/sample_agent_response.md",
         "w",
