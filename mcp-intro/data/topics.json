@@ -1,0 +1,106 @@
+[
+    {
+        "id": "python-decorators",
+        "title": "Python Decorators",
+        "summary": "Python decorators wrap a function to add or modify its behavior without changing the original function.",
+        "prerequisites": [
+            "Functions",
+            "Scope"
+        ],
+        "key_concepts": [
+            "Higher-order functions",
+            "Wrapper functions"
+        ],
+        "common_mistakes": [
+            "Forgetting to return the wrapper function",
+            "Calling the decorated function instead of returning it"
+        ],
+        "practice_idea": "Create a decorator that logs function calls."
+    },
+    {
+        "id": "python-async",
+        "title": "Python Async Programming",
+        "summary": "Asynchronous programming allows Python programs to perform other work while waiting for operations to finish.",
+        "prerequisites": [
+            "Functions",
+            "Loops",
+            "Basic exception handling"
+        ],
+        "key_concepts": [
+            "Coroutines",
+            "Async and await",
+            "Event loop",
+            "Tasks"
+        ],
+        "common_mistakes": [
+            "Forgetting to use await with a coroutine",
+            "Using blocking functions inside asynchronous code"
+        ],
+        "practice_idea": "Create two asynchronous functions that run concurrently with asyncio.gather."
+    },
+    {
+        "id": "python-list-comprehensions",
+        "title": "Python List Comprehensions",
+        "summary": "List comprehensions provide a concise way to create lists from iterable objects.",
+        "prerequisites": [
+            "Lists",
+            "For loops",
+            "Conditions"
+        ],
+        "key_concepts": [
+            "Iteration",
+            "Expressions",
+            "Filtering",
+            "Conditional expressions"
+        ],
+        "common_mistakes": [
+            "Placing the condition in the wrong position",
+            "Creating comprehensions that are too difficult to read"
+        ],
+        "practice_idea": "Create a list containing the squares of all even numbers between 1 and 20."
+    },
+    {
+        "id": "python-oop",
+        "title": "Python Object-Oriented Programming",
+        "summary": "Object-oriented programming organizes code using classes and objects that contain data and behavior.",
+        "prerequisites": [
+            "Variables",
+            "Functions",
+            "Data structures"
+        ],
+        "key_concepts": [
+            "Classes",
+            "Objects",
+            "Attributes",
+            "Methods",
+            "Inheritance"
+        ],
+        "common_mistakes": [
+            "Forgetting the self parameter in instance methods",
+            "Confusing class attributes with instance attributes"
+        ],
+        "practice_idea": "Create a Student class with name and grade attributes and a method that displays the student's information."
+    },
+    {
+        "id": "rest-apis",
+        "title": "REST APIs",
+        "summary": "REST APIs allow applications to communicate over HTTP by exchanging structured data.",
+        "prerequisites": [
+            "HTTP basics",
+            "JSON",
+            "Python functions"
+        ],
+        "key_concepts": [
+            "Endpoints",
+            "HTTP methods",
+            "Status codes",
+            "Requests and responses"
+        ],
+        "common_mistakes": [
+            "Using the wrong HTTP method",
+            "Returning an incorrect status code",
+            "Not validating incoming data"
+        ],
+        "practice_idea": "Create a small API endpoint that returns a list of programming topics in JSON format."
+    }
+]
