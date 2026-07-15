@@ -57,7 +57,15 @@ def search_topics(query: str) -> list[dict]:
 
 @mcp.tool
 def get_topic_details(topic_id: str) -> dict:
-    """Return full information for a topic by id."""
+    """Return full information for a topic by id.
+
+    Args:
+        topic_id: The identifier of the topic to look up.
+
+    Returns:
+        The topic dictionary if found, otherwise a dictionary with an
+        `error` key describing the problem.
+    """
 
     normalized_topic_id = topic_id.strip()
 
@@ -71,6 +79,29 @@ def get_topic_details(topic_id: str) -> dict:
         if topic["id"] == normalized_topic_id:
             return topic
     return {"error": "Topic not found."}
+
+
+@mcp.resource("topics://catalog")
+def get_topic_catalog() -> str:
+    """Return the list of available topic ids and titles.
+
+    Returns:
+        A JSON-encoded string containing a list of objects with `id` and
+        `title` for each available topic.
+    """
+
+    TOPICS_FILE = Path(__file__).parent.parent / "data" / "topics.json"
+    with open(TOPICS_FILE, "r", encoding="utf-8") as file:
+        topics = json.load(file)
+
+    catalog = []
+
+    for topic in topics:
+        catalog.append({
+            "id": topic["id"],
+            "title": topic["title"]
+        })
+    return json.dumps(catalog)
 
 
 if __name__ == "__main__":
